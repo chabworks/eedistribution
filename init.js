@@ -6,7 +6,6 @@ const glob = require("glob");
 const iPhone = puppeteer.devices['iPhone 6'];
 
 
-
 //const request=require('request')
 //const csv=require('csvtojson')
 const converter = require('json-2-csv');
