@@ -158,17 +158,11 @@ window.call_api_data = function (input_key){
 					
 			setTimeout(function(){		
 				window.current_request_stack--;	
-			},3500);	
+			},2250);	
 	}).fail(function(xhr, textStatus, errorThrown){
-            this.tryCount++;
-            if (this.tryCount <= this.retryLimit) {
-                window.call_api_data(input_key);
-                return;
-            }else{
-            	console.log('retryLimit crossed for '+ this.url);
-            	jQuery("#errors").val(jQuery("#errors").val() +"\n"+'retryLimit crossed for '+ this.url);
-            	return;
-            }
+            setTimeout(function(){		
+				window.current_request_stack--;	
+			},2250);
 	});
 }
 window.trackindex=0
