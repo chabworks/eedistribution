@@ -6,6 +6,7 @@ const glob = require("glob");
 const iPhone = puppeteer.devices['iPhone 6'];
 
 
+
 //const request=require('request')
 //const csv=require('csvtojson')
 const converter = require('json-2-csv');
@@ -105,34 +106,34 @@ if (all__proxies.length)
 
 
 
-    let browser_args = ['--window-size=1366,768',
+   
+
+
+     let browser_args = ['--window-size=1920,1080',
         '--disable-gpu','--no-sandbox', "--disable-features=IsolateOrigins,site-per-process", '--blink-settings=imagesEnabled=true'  , '--allow-running-insecure-content',
         '--disable-web-security',
         '--disable-features=IsolateOrigins',
-        '--disable-site-isolation-trials',
-        '--disable-infobars' 
+        '--disable-site-isolation-trials' 
     ];
 
-    if (choosen_proxy) {
-        browser_args.push('--proxy-server=http://p.webshare.io:80');
-    }
+		if (choosen_proxy) {
+		        // browser_args.push('--proxy-server=http://p.webshare.io:80');
+		    }
+
+		 browser = await puppeteer.launch({
+		        headless:true,
+		        ignoreHTTPSErrors: true,
+		        // userDataDir:user_data_dir,
+		        slowMo: 0,
+		        waitUntil: 'load',
+		        timeout: 0,
+		        args: browser_args
+		    });
 
 
-    browser = await puppeteer.launch({
-        headless:true,
-        userDataDir:user_data_dir,
-        ignoreHTTPSErrors: true,
-        slowMo: 0,
-        waitUntil: 'load',
-        timeout: 0,
-        args: browser_args
-    });
+		const page = await browser.newPage();
 
-
-    // create new page object
-     const page = await browser.newPage({context: `${Math.random()}`});
-
-
+		await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
 
 
         console.log('choosen_login: ' + choosen_proxy)
@@ -140,10 +141,13 @@ if (all__proxies.length)
         let choosen_proxy_login = choosen_proxy.split(':')
 
     
-    await page.authenticate({username:choosen_proxy_login[0],password:choosen_proxy_login[1]});
+    // await page.authenticate({username:choosen_proxy_login[0],password:choosen_proxy_login[1]});
+
+
     await page.goto("https://www.eedistribution.com", {waitUntil: 'load', timeout: 0});
     // await page.goto("https://showmyip.com", {waitUntil: 'load', timeout: 0});
 
+console.log('Page opened');
 
 
     // set viewport width and height
