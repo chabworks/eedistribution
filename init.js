@@ -1,6 +1,9 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer");
 
+const proxyChain = require('proxy-chain');
+
+
 const glob = require("glob");
 
 const iPhone = puppeteer.devices['iPhone 6'];
@@ -31,9 +34,9 @@ const todayDate = new Date().toISOString().slice(0, 10);
 
 
 // Asynchronous version
-fs.unlink('data/'+todayDate+'.json', function(err) {
+fs.unlink(''+todayDate+'.json', function(err) {
     if(!err) {
-        console.log('File deleted '+'data/'+todayDate+'.json');
+        console.log('File deleted '+''+todayDate+'.json');
     }    
 })
 
@@ -113,12 +116,27 @@ if (all__proxies.length)
         '--disable-gpu','--no-sandbox', "--disable-features=IsolateOrigins,site-per-process", '--blink-settings=imagesEnabled=true'  , '--allow-running-insecure-content',
         '--disable-web-security',
         '--disable-features=IsolateOrigins',
-        '--disable-site-isolation-trials' 
+        '--disable-site-isolation-trials'
     ];
 
 		if (choosen_proxy) {
-		        // browser_args.push('--proxy-server=http://p.webshare.io:80');
-		    }
+
+
+			console.log('choosen_login: ' + choosen_proxy)
+
+        	let choosen_proxy_login = choosen_proxy.split(':')
+         	let username =choosen_proxy_login[0];
+		    let password =choosen_proxy_login[1];
+
+		    const oldProxyUrl = 'http://'+username+':'+password+'@p.webshare.io:80';
+		    const newProxyUrl = await proxyChain.anonymizeProxy(oldProxyUrl);
+
+		    console.log(newProxyUrl);
+
+	        browser_args.push(`--proxy-server=${newProxyUrl}`);
+
+
+		 }
 
 		 browser = await puppeteer.launch({
 		        headless:true,
@@ -132,65 +150,16 @@ if (all__proxies.length)
 
 
 		const page = await browser.newPage();
-
 		await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
-
-
-        console.log('choosen_login: ' + choosen_proxy)
-
-        let choosen_proxy_login = choosen_proxy.split(':')
-
-    
-    // await page.authenticate({username:choosen_proxy_login[0],password:choosen_proxy_login[1]});
-
+  
+    await page.goto("https://api.ipify.org/?format=text", {waitUntil: 'load', timeout: 0});
+    content = await page.content();
+    console.log(content)
+    // await new Promise(resolve => setTimeout(resolve, 600000));
 
     await page.goto("https://www.eedistribution.com", {waitUntil: 'load', timeout: 0});
-    // await page.goto("https://showmyip.com", {waitUntil: 'load', timeout: 0});
 
-console.log('Page opened');
-
-
-    // set viewport width and height
-    // await page.setViewport({ width: 1920, height: 1080 });
-    // await page.emulate(iPhone);
-
-    // await page.goto("https://www.google.com/");
-
-    // capture screenshot and store it into screenshots directory.
-    // var idsd=0;
-    // setInterval(function(){
-    //  idsd++;
-    //  page.screenshot({ path: 'screenshots/github-profile'+idsd+'.jpeg' });
-    // },1000);
-
-
-
-
-
-
-
-
-   // await new Promise(resolve => setTimeout(resolve, 600000));
-
-await page.evaluate(inject_js);
-
-// await page.evaluate(() => {
-//   const inter = setInterval(function () {
-//     clearInterval(inter);
-//     if("undefined" != typeof jQuery) {
-//       return Promise.resolve(true);
-//     }else{
-//       return false;
-//     }          
-//   },2000);
-
-// }).then(function (resolved) {
-//   console.log(resolved);
-// });
-
-// await page.waitForFunction('"undefined" != typeof jQuery').then(function () {
-//       console.log('jQuery loaded');
-//     });
+	await page.evaluate(inject_js);
 
 for (let i = 0;true;i++) {
    result = await page.evaluate(() => {
@@ -198,7 +167,7 @@ for (let i = 0;true;i++) {
        return {"first":true,second:window.final_data};
      }else{
        if ("undefined" != typeof  window.final_data && "undefined" != typeof  window.srcindex) {
-         return {"first":'Page: ' + window.srcindex + ', Offers: ' + window.final_data.length,second:''};
+         return {"first":'srcindex: ' + window.srcindex + ', input_data: ' + window.input_data.length+', final_data: ' + window.final_data.length,second:''};
        }else{
          return {"first":false,second:''};
        }
@@ -212,12 +181,12 @@ for (let i = 0;true;i++) {
      
      // var visited_pages = final_data.length;
 
-     fs.writeFileSync('data/'+todayDate+'.json', jsonstr);
-     console.log("\n\n"+'Success! File Exported to: '+'data/'+todayDate+'.json'+"\n\n");
+     fs.writeFileSync(''+todayDate+'.json', jsonstr);
+     console.log("\n\n"+'Success! File Exported to: '+''+todayDate+'.json'+"\n\n");
      // console.log(jsonstr);
 
      let json2csv = require("json2csv");
-      const csv_data = JSON.parse(fs.readFileSync('data/'+todayDate+'.json'));
+      const csv_data = JSON.parse(fs.readFileSync(''+todayDate+'.json'));
 
       converter.json2csv(csv_data, (err, csv) => {
           if (err) {
