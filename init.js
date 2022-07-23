@@ -7,10 +7,10 @@ const iPhone = puppeteer.devices['iPhone 6'];
 
 
 
-const request=require('request')
-const csv=require('csvtojson')
+//const request=require('request')
+//const csv=require('csvtojson')
 const converter = require('json-2-csv');
-const download = require('download');
+//const download = require('download');
 
 mailer = require('nodemailer');
 var date = new Date();
