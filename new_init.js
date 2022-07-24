@@ -5,7 +5,6 @@ const proxyChain = require('proxy-chain');
 
 
 const glob = require("glob");
-
 const iPhone = puppeteer.devices['iPhone 6'];
 
 
