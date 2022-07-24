@@ -134,7 +134,9 @@ window.call_api_data = function (input_key){
 
 			to_be_push['Page Url'] = this.url;
 			to_be_push['Title'] = dom_nodes.find('h1.H1tag').text().trim();
-			to_be_push['Item Number'] = dom_nodes.find('font.SmBlack:contains(Item Number: )').text().trim().replace('Item Number: ','').replace('Item Number:','').trim();
+		
+			dom_nodes.find('font.SmBlack:contains(Item Number: )').find('*').prepend("\n")
+			to_be_push['Item Number'] = dom_nodes.find('font.SmBlack:contains(Item Number: )').text().trim().replace('Item Number: ','').replace('Item Number:','').trim().split("\n")[0];
 			to_be_push['Stock Level'] = dom_nodes.find('.SmBlackBold:contains(Stock Level)').parent().text().trim().replace('Stock Level:',"").replace('Stock Level: ',"").replace(':',"").trim();
 			to_be_push['Price per piece 1'] = dom_nodes.find('td:contains("Price Per Piece"):last').parent().parent().parent().find('tr:nth-child(2) td:nth-child(3)').text().trim();
 			to_be_push['Price per piece 2'] = dom_nodes.find('td:contains("Price Per Piece"):last').parent().parent().parent().find('tr:nth-child(3) td:nth-child(3)').text().trim();
