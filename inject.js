@@ -281,7 +281,7 @@ page_url=window.sub_cat_urls[window.category_pointer]+'';
 jQuery.ajax({
         type: "POST",
 	    url: 'https://www.eedistribution.com/wscheckin.asp?pg=1',
-	    data:{"skip_redirect": "1","custnum": "3965472","password": "cjX.yM*FyU3:M1TpsX!0","x": "17","y": "22"}
+	    data:{"skip_redirect": "1","custnum": "3965472","password": "Welcome123$#$","x": "17","y": "22"}
 	}).done(function(products_res,status,xhr){
 			get_input_urls();	
 	});	
@@ -291,7 +291,7 @@ setInterval(function() {
 	jQuery.ajax({
         type: "POST",
 	    url: 'https://www.eedistribution.com/wscheckin.asp?pg=1',
-	    data:{"skip_redirect": "1","custnum": "3965472","password": "cjX.yM*FyU3:M1TpsX!0","x": "17","y": "22"}
+	    data:{"skip_redirect": "1","custnum": "3965472","password": "Welcome123$#$","x": "17","y": "22"}
 	})
 },45000)
 
