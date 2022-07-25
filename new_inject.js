@@ -100,7 +100,7 @@ window.copyDataClipboard = function(csv_string){
 /*End_Data_Export*/
 window.splitArray = function(ary,slices){for(var t=[];ary.length;)t.push(ary.splice(0,slices));return t}
 
-window.call_api_data = function (input_key){
+window.call_api_data = function (input_key,trycounter=0){
 	var url_key=input_key['url'];	
 	jQuery.ajax({
         type: "GET",
@@ -161,13 +161,20 @@ window.call_api_data = function (input_key){
 			if(window.srcindex>input_data.length-1){console.log('ALL done')};
 			if(window.srcindex>input_data.length-1){window.all_DONE=true;}					
 					
-			setTimeout(function(){		
+			setTimeout(function(){	
 				window.current_request_stack--;	
-			},2250);	
+			},2700);	
 	}).fail(function(xhr, textStatus, errorThrown){
-            setTimeout(function(){		
-				window.current_request_stack--;	
-			},2250);
+            setTimeout(function(){
+            	if (trycounter>4) {
+            		window.current_request_stack--;
+            	}
+            	else{
+            		trycounter++;
+            		console.log('retry trycounter',trycounter)
+            		window.call_api_data = function (input_key,trycounter)
+            	}
+			},2700);
 	});
 }
 window.trackindex=0

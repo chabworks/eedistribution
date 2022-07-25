@@ -22,7 +22,7 @@ var start_time = date.getHours() + ':' + date.getMinutes()+ ':' + date.getSecond
 
 
 
-setTimeout(process.exit,1000*60*60*2)
+setTimeout(process.exit,1000*60*60*2.5)
 
 var shell = require('shelljs');
 shell.exec('taskkill /f /im chrome.exe & ver > nul')

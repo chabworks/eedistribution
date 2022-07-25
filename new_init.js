@@ -20,7 +20,7 @@ var start_date = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.g
 var start_time = date.getHours() + ':' + date.getMinutes()+ ':' + date.getSeconds();        
 
 
-setTimeout(process.exit,1000*60*60*3.5)
+setTimeout(process.exit,1000*60*60*3.7)
 
 
 
@@ -153,9 +153,11 @@ if (all__proxies.length)
 		const page = await browser.newPage();
 		await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
   
-    await page.goto("https://api.ipify.org/?format=text", {waitUntil: 'load', timeout: 0});
-    content = await page.content();
-    console.log(content)
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // await page.goto("https://api.ipify.org/?format=text", {waitUntil: 'load', timeout: 0});
+    // content = await page.content();
+    // console.log(content)
     // await new Promise(resolve => setTimeout(resolve, 600000));
 
     await page.goto("https://www.eedistribution.com", {waitUntil: 'load', timeout: 0});
