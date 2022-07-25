@@ -6,7 +6,7 @@ window.website_domain ="eedistribution.com";
 // for 200
 window.sub_cat_urls=["https://www.eedistribution.com/hitlist.asp?eeshop=&spotlight=&searchfield=&SearchOrder=&company=&theme=&collect=&justone=0&new=5&clearance=0&premium=0&pref=0&nm=0&coming=&orsearch=0&wrid=0&sort=20&rpp=200&tree=0&instockcheck=on&pg="];
 
-//for 20
+//for 20-
 // window.sub_cat_urls=["https://www.eedistribution.com/hitlist.asp?eeshop=&spotlight=&searchfield=&SearchOrder=&company=&theme=&collect=&justone=0&new=5&clearance=0&premium=0&pref=0&nm=0&coming=&orsearch=0&wrid=0&sort=20&rpp=20&tree=0&instockcheck=on&pg="];
 
 window.current_request_stack=0;
