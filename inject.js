@@ -236,7 +236,7 @@ page_url=window.sub_cat_urls[window.category_pointer]+'';
 					});
 
 					pointer++;
-					if(products_ary.length>0 && products_html.find('.Link_SmOrangeBold:contains("NEXT")').length != 0){//&& pointer<totalpages+1  && pointer<=window.end_at
+					if(products_ary.length>0 && products_html.find('.Link_SmOrangeBold:contains("NEXT")').length == 0){//&& pointer<totalpages+1  && pointer<=window.end_at
 						get_input_urls_inner(pointer);
 					}else if(window.sub_cat_urls.length-1> window.category_pointer){
 						window.category_pointer++;
