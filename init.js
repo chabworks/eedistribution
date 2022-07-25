@@ -120,47 +120,50 @@ if (all__proxies.length)
         '--disable-site-isolation-trials'
     ];
 
-		if (choosen_proxy) {
+    if (choosen_proxy) {
 
 
-			console.log('choosen_login: ' + choosen_proxy)
+      console.log('choosen_login: ' + choosen_proxy)
 
-        	let choosen_proxy_login = choosen_proxy.split(':')
-         	let username =choosen_proxy_login[0];
-		    let password =choosen_proxy_login[1];
+          let choosen_proxy_login = choosen_proxy.split(':')
+          let username =choosen_proxy_login[0];
+        let password =choosen_proxy_login[1];
 
-		    const oldProxyUrl = 'http://'+username+':'+password+'@p.webshare.io:80';
-		    const newProxyUrl = await proxyChain.anonymizeProxy(oldProxyUrl);
+        const oldProxyUrl = 'http://'+username+':'+password+'@p.webshare.io:80';
+        const newProxyUrl = await proxyChain.anonymizeProxy(oldProxyUrl);
 
-		    console.log(newProxyUrl);
+        console.log(newProxyUrl);
 
-	        browser_args.push(`--proxy-server=${newProxyUrl}`);
-
-
-		 }
-
-		 browser = await puppeteer.launch({
-		        headless:true,
-		        ignoreHTTPSErrors: true,
-		        // userDataDir:user_data_dir,
-		        slowMo: 0,
-		        waitUntil: 'load',
-		        timeout: 0,
-		        args: browser_args
-		    });
+          browser_args.push(`--proxy-server=${newProxyUrl}`);
 
 
-		const page = await browser.newPage();
-		await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
-  
-    await page.goto("https://api.ipify.org/?format=text", {waitUntil: 'load', timeout: 0});
-    content = await page.content();
-    console.log(content)
+     }
+
+     browser = await puppeteer.launch({
+            headless:true,
+            ignoreHTTPSErrors: true,
+            // userDataDir:user_data_dir,
+            slowMo: 0,
+            waitUntil: 'load',
+            timeout: 0,
+            args: browser_args
+        });
+
+
+    const page = await browser.newPage();
+    await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
+    
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // await page.goto("https://api.ipify.org/?format=text", {waitUntil: 'load', timeout: 0});
+    // content = await page.content();
+    // console.log(content)
     // await new Promise(resolve => setTimeout(resolve, 600000));
 
     await page.goto("https://www.eedistribution.com", {waitUntil: 'load', timeout: 0});
 
-	await page.evaluate(inject_js);
+  await page.evaluate(inject_js);
 
 for (let i = 0;true;i++) {
    result = await page.evaluate(() => {
@@ -202,7 +205,7 @@ for (let i = 0;true;i++) {
 
         if(result["second"].length){
 
-			console.log('called')
+      console.log('called')
 
             
 
