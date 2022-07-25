@@ -4,10 +4,10 @@ if("undefined" == typeof jQuery){
 var jqryinvl = setInterval(function() { if("undefined" != typeof jQuery) {	clearInterval(jqryinvl);
 window.website_domain ="eedistribution.com";
 // for 200
-window.sub_cat_urls=["https://www.eedistribution.com/hitlist.asp?eeshop=&spotlight=&searchfield=&SearchOrder=&company=&theme=&collect=&justone=0&new=5&clearance=0&premium=0&pref=0&nm=0&coming=&orsearch=0&wrid=0&sort=20&rpp=200&tree=0&instockcheck=on&pg="];
+window.sub_cat_urls=["https://www.eedistribution.com/hitlist.asp?spotlight=&eeshop=&company=&theme=&collect=&rppdup=200&rpp=200&filterdup=0&filter=0&instockCheck=on&premium=0&nm=0&coming=&clearance=0&justone=0&SearchOrder=&searchfield=*&pref=0&orsearch=0&wrid=0&tree=0&sort=0&new=0&pg="];
 
 //for 20-
-// window.sub_cat_urls=["https://www.eedistribution.com/hitlist.asp?eeshop=&spotlight=&searchfield=&SearchOrder=&company=&theme=&collect=&justone=0&new=5&clearance=0&premium=0&pref=0&nm=0&coming=&orsearch=0&wrid=0&sort=20&rpp=20&tree=0&instockcheck=on&pg="];
+// window.sub_cat_urls=["https://www.eedistribution.com/hitlist.asp?spotlight=&eeshop=&company=&theme=&collect=&rppdup=200&rpp=20&filterdup=0&filter=0&instockCheck=on&premium=0&nm=0&coming=&clearance=0&justone=0&SearchOrder=&searchfield=*&pref=0&orsearch=0&wrid=0&tree=0&sort=0&new=0&pg="];
 
 window.current_request_stack=0;
 window.allowed_request_stack=1;
@@ -238,8 +238,10 @@ page_url=window.sub_cat_urls[window.category_pointer]+'';
 
 					products_ary.each(function(i,e){
 						var product_link=this.href;
-						if(window.input_data.indexOf(product_link) === -1)
-							window.input_data.push(product_link);
+						if(jQuery(this).parentsUntil('table').last().parent().find('[align="left"]>.Link_ViewFull').text().trim() == "In Stock"){
+							if(window.input_data.indexOf(product_link) === -1)
+								window.input_data.push(product_link);
+						}
 					});
 
 					pointer++;
