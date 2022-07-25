@@ -172,7 +172,7 @@ window.call_api_data = function (input_key,trycounter=0){
             	else{
             		trycounter++;
             		console.log('retry trycounter',trycounter)
-            		window.call_api_data = function (input_key,trycounter)
+            		window.call_api_data(input_key,trycounter)
             	}
 			},2700);
 	});
