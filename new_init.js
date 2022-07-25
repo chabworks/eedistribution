@@ -20,6 +20,8 @@ var start_date = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.g
 var start_time = date.getHours() + ':' + date.getMinutes()+ ':' + date.getSeconds();        
 
 
+setTimeout(process.exit,1000*60*60*3.5)
+
 
 
 var shell = require('shelljs');
