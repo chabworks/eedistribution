@@ -28,7 +28,7 @@ var shell = require('shelljs');
 shell.exec('taskkill /f /im chrome.exe & ver > nul')
 
 
-const buffers = fs.readFileSync("inject.js");
+const buffers = fs.readFileSync("in_inject.js");
 const inject_js = buffers.toString();
 
 const todayDate = new Date().toISOString().slice(0, 10);
