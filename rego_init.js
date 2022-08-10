@@ -1,6 +1,5 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer");
-
 const proxyChain = require('proxy-chain');
 
 
