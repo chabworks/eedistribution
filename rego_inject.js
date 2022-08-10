@@ -10,7 +10,7 @@ window.sub_cat_urls=["https://regowholesale.com/collections/all"];
 // window.sub_cat_urls=["https://www.eedistribution.com/hitlist.asp?eeshop=&spotlight=&searchfield=&SearchOrder=&company=&theme=&collect=&justone=0&new=5&clearance=0&premium=0&pref=0&nm=0&coming=&orsearch=0&wrid=0&sort=20&rpp=20&tree=0&instockcheck=on&pg="];
 
 window.current_request_stack=0;
-window.allowed_request_stack=4;
+window.allowed_request_stack=2;
 
 window.category_pointer= 0; 
 window.allowed_request_stack_backup=window.allowed_request_stack;
