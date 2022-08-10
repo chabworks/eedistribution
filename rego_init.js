@@ -140,7 +140,7 @@ if (all__proxies.length)
      }
 
      browser = await puppeteer.launch({
-            headless:true,
+            headless:false,
             ignoreHTTPSErrors: true,
             // userDataDir:user_data_dir,
             slowMo: 0,
@@ -159,7 +159,7 @@ if (all__proxies.length)
 
     await new Promise(resolve => setTimeout(resolve, 1000));
   
-    await page.goto("https://regowholesale.com/s/files/1/0266/5424/4899/t/9/assets/theme.scss.css?v=152816582206487681631654105488", {waitUntil: 'load', timeout: 0});
+    await page.goto("https://regowholesale.com/account/login", {waitUntil: 'load', timeout: 0});
 
     await new Promise(resolve => setTimeout(resolve, 1000));
 

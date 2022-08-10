@@ -1,7 +1,7 @@
-// if("undefined" == typeof jQuery){
+if("undefined" == typeof jQuery || "undefined" == typeof jQuery.ajax){
 	var jq = document.createElement("script");jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js?fdfg=sd", document.getElementsByTagName("head")[0].appendChild(jq);
-// }
-var jqryinvl = setInterval(function() { if("undefined" != typeof jQuery) {	clearInterval(jqryinvl);
+}
+var jqryinvl = setInterval(function() { if("undefined" != typeof jQuery.ajax) {	clearInterval(jqryinvl);
 window.website_domain ="regowholesale.com";
 // for 200
 window.sub_cat_urls=["https://regowholesale.com/collections/all"];
@@ -77,7 +77,7 @@ window.final_backup = function(type){
 		}
 	},1000*window.backup_wait_thou_sec);
 }
-window.onbeforeunload=function(o){var e="Are you sure you want to close the Window?";return o.returnValue=e,e}; // acident window Close protection
+// window.onbeforeunload=function(o){var e="Are you sure you want to close the Window?";return o.returnValue=e,e}; // acident window Close protection
 window.downloadObjectAsJson = function(type,e, t) {
 	if(typeof(t)=='undefined') t='demo';	
 	if(type=='json'){
@@ -153,7 +153,7 @@ window.call_api_data = function (input_key,trycounter=0){
 					if (typeof json_data['offers'] != 'undefined' && json_data['offers']) {
 						if (typeof json_data['offers'][0] != 'undefined' && json_data['offers'][0]) {
 							if (typeof json_data['offers'][0]['price'] != 'undefined' && json_data['offers'][0]['price']) {
-								to_be_push['Price'] = (json_data['offers'][0]['price']).toFixed(2);			
+								to_be_push['Price'] = (1*json_data['offers'][0]['price']).toFixed(2);			
 								to_be_push['Price'] = '$'+(to_be_push['Price']);	
 							}
 						}
