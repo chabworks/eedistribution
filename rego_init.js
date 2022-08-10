@@ -1,5 +1,6 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer");
+
 const proxyChain = require('proxy-chain');
 
 
@@ -139,7 +140,7 @@ if (all__proxies.length)
      }
 
      browser = await puppeteer.launch({
-            headless:false,
+            headless:true,
             ignoreHTTPSErrors: true,
             // userDataDir:user_data_dir,
             slowMo: 0,
